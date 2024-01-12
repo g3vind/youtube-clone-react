@@ -12,15 +12,20 @@ import { FaHistory } from "react-icons/fa";
 import { BiLike } from "react-icons/bi";
 import { BsFillTrophyFill } from "react-icons/bs";
 import { IoMdTrendingUp } from "react-icons/io";
+import { useSelector } from "react-redux";
+import CollapsedSidebar from "./CollapsedSidebar";
 
 function Sidebar() {
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+  // this is called "early return"
+
   const listItemStyles = "flex items-center font-medium mb-2 cursor-pointer";
   const iconStyles = "mr-2";
-  return (
-    <div className="flex flex-col justify-center gap-3 w-32 m-6">
+  return !isMenuOpen ? (
+    <div className="flex flex-col justify-center gap-4 w-32 m-6">
       {/* First */}
       <div className="border-b-2 border-gray-100 mb-2">
-        <ul>
+        <ul className="flex flex-col gap-1">
           <li className={listItemStyles}>
             <span className={iconStyles}>
               <MdHomeFilled size={22} />
@@ -43,7 +48,7 @@ function Sidebar() {
       </div>
       {/* Second */}
       <div className="border-b-2 border-gray-100 mb ">
-        <ul>
+        <ul className="flex flex-col gap-1">
           <li className={listItemStyles}>
             <span className={iconStyles}>
               {" "}
@@ -74,7 +79,7 @@ function Sidebar() {
       </div>
       {/* Third */}
       <div className="border-b-2 border-gray-100 mb-2 ">
-        <ul>
+        <ul className="flex flex-col gap-1">
           <li className={listItemStyles}>
             <span className={iconStyles}>
               {" "}
@@ -104,7 +109,7 @@ function Sidebar() {
       </div>
       {/* Fourth */}
       <div className="border-b-2 border-gray-100 mb-2 ">
-        <ul>
+        <ul className="flex flex-col gap-1">
           <li className={listItemStyles}>
             <span className={iconStyles}>
               <IoMdTrendingUp />
@@ -139,6 +144,8 @@ function Sidebar() {
         </ul>
       </div>
     </div>
+  ) : (
+    <CollapsedSidebar />
   );
 }
 

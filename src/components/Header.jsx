@@ -1,12 +1,19 @@
 import { MdCreateNewFolder } from "react-icons/md";
 import { IoIosNotifications } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../store/appSlice";
 
 function Header() {
+  const dispatch = useDispatch();
+  const handleToggleMenu = () => {
+    dispatch(toggleMenu());
+  };
   return (
     <div className="flex flex-row justify-between shadow-md">
       {/* First */}
-      <div className=" flex flex-row gap-1 p-3">
+      <div className=" flex flex-row gap-2 ml-6 items-center p-3">
         <img
+          onClick={() => handleToggleMenu()}
           src="https://cdn-icons-png.flaticon.com/128/9663/9663120.png"
           alt="hamburger menu"
           className="h-8 w-8 cursor-pointer"
