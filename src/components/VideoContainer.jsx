@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { YOUTUBE_VIDEOS_API } from "../utils/constants";
 import VideoCard from "./VideoCard";
+import HomeShimmer from "../shimmers/HomeShimmer";
 
 function VideoContainer() {
   const [videos, setVideos] = useState([]);
@@ -20,6 +21,8 @@ function VideoContainer() {
       console.log(error);
     }
   };
+
+  if (videos.length === 0) return <HomeShimmer />;
   return (
     <div className="flex flex-wrap justify-around mt-6">
       {videos.map((video) => (
