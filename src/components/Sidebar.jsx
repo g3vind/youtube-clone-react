@@ -17,12 +17,11 @@ import CollapsedSidebar from "./CollapsedSidebar";
 
 function Sidebar() {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
-  // this is called "early return"
 
   const listItemStyles = "flex items-center font-medium mb-2 cursor-pointer";
   const iconStyles = "mr-2";
   return !isMenuOpen ? (
-    <div className="flex flex-col justify-center gap-4 w-32 m-6">
+    <div className="flex flex-col gap-4 ml-4 mt-6 w-36">
       {/* First */}
       <div className="border-b-2 border-gray-100 mb-2">
         <ul className="flex flex-col gap-1">
@@ -116,12 +115,7 @@ function Sidebar() {
             </span>
             Trending
           </li>
-          <li className={listItemStyles}>
-            <span className={iconStyles}>
-              <MdMusicNote />
-            </span>
-            Music
-          </li>
+
           <li className={listItemStyles}>
             <span className={iconStyles}>
               <MdOutlineLocalMovies />
