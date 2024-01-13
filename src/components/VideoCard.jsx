@@ -14,11 +14,11 @@ function VideoCard({ info }) {
   const time = formatRelativeTime(publishedAt);
   const views = formatViewCount(viewCount);
   return (
-    <div className="w-72">
+    <div className="w-64 m-auto h-auto">
       <img
         src={thumbnails?.medium?.url}
         alt="channelTitle"
-        className="h-48 w-72 object-cover rounded-2xl"
+        className="h-44 w-72 object-cover rounded-lg"
       />
       <h2 className="font-medium mt-2">{title}</h2>
       <p>{channelTitle}</p>

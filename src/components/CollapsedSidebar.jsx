@@ -1,5 +1,6 @@
 import { MdHomeFilled, MdSubscriptions, MdVideoLibrary } from "react-icons/md";
 import { SiYoutubeshorts } from "react-icons/si";
+import { Link } from "react-router-dom";
 
 function CollapsedSidebar() {
   const listItemStyles =
@@ -10,12 +11,15 @@ function CollapsedSidebar() {
       {/* First */}
       <div className="flex gap-16 mb-2">
         <ul className="flex flex-col mt-8 gap-12">
-          <li className={listItemStyles}>
-            <span>
-              <MdHomeFilled size={25} />
-            </span>
-            <span className="text-xs">Home</span>
-          </li>
+          <Link to="/">
+            <li className={listItemStyles}>
+              <span>
+                <MdHomeFilled size={25} />
+              </span>
+              <span className="text-xs">Home</span>
+            </li>
+          </Link>
+
           <li className={listItemStyles}>
             <span>
               <SiYoutubeshorts size={25} />

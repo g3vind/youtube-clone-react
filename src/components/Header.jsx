@@ -2,6 +2,7 @@ import { MdCreateNewFolder } from "react-icons/md";
 import { IoIosNotifications } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../store/appSlice";
+import { Link } from "react-router-dom";
 
 function Header() {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function Header() {
   return (
     <div className="flex flex-row justify-between shadow-md">
       {/* First */}
+
       <div className=" flex flex-row gap-2 ml-6 items-center p-3">
         <img
           onClick={() => handleToggleMenu()}
@@ -18,12 +20,14 @@ function Header() {
           alt="hamburger menu"
           className="h-8 w-8 cursor-pointer"
         />
+
         <img
           src="https://t3.ftcdn.net/jpg/03/00/38/90/240_F_300389025_b5hgHpjDprTySl8loTqJRMipySb1rO0I.jpg"
           alt="youtube logo"
           className="object-contain h-12 w-auto -mt-2 cursor-pointer"
         />
       </div>
+
       {/* Second */}
       <div className="flex-row flex p-3">
         <input

@@ -1,19 +1,32 @@
 import HomePage from "./pages/HomePage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
+import Body from "./components/Body";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import WatchPage from "./pages/WatchPage";
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "watch",
+        element: <WatchPage />,
+      },
+    ],
+  },
+]);
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/video" element={<WatchPage />} />
-        </Routes>
-      </BrowserRouter>
+      <Header />
+      <RouterProvider router={appRouter} />
     </Provider>
   );
 }
