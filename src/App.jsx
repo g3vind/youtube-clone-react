@@ -5,11 +5,13 @@ import Body from "./components/Body";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import WatchPage from "./pages/WatchPage";
+import SubsPage from "./pages/SubsPage";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
+
     children: [
       {
         path: "/",
@@ -18,6 +20,10 @@ const appRouter = createBrowserRouter([
       {
         path: "watch",
         element: <WatchPage />,
+      },
+      {
+        path: "subscriptions",
+        element: <SubsPage />,
       },
     ],
   },

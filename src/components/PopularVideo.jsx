@@ -1,10 +1,11 @@
 import React from "react";
 import { formatRelativeTime, formatViewCount } from "../utils/constants";
+import PopularShimmer from "../shimmers/PopularShimmer";
 
 function PopularVideo({ info }) {
   const { snippet, statistics } = info;
 
-  if (info.length === 0) return <h1>Error</h1>;
+  if (info.length === 0) return <PopularShimmer />;
   const { channelTitle, thumbnails, title, publishedAt } = snippet;
 
   const { viewCount } = statistics;

@@ -1,8 +1,6 @@
 import { formatRelativeTime, formatViewCount } from "../utils/constants";
 
 function VideoCard({ info }) {
-  console.log(info);
-
   if (!info) return <h1>No Data Available</h1>;
 
   const { snippet, statistics } = info;

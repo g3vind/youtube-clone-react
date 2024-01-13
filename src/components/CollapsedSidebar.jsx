@@ -26,12 +26,14 @@ function CollapsedSidebar() {
             </span>
             <span className="text-xs">Shorts</span>
           </li>
-          <li className={listItemStyles}>
-            <span>
-              <MdSubscriptions size={25} />
-            </span>
-            <span className="text-xs">Subscriptions</span>
-          </li>
+          <Link to="subscriptions">
+            <li className={listItemStyles}>
+              <span>
+                <MdSubscriptions size={25} />
+              </span>
+              <span className="text-xs">Subscriptions</span>
+            </li>
+          </Link>
           <li className={listItemStyles}>
             <span>
               <MdVideoLibrary size={25} />{" "}

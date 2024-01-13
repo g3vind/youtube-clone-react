@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { POPULAR_VIDEOS_API } from "../utils/constants";
 import PopularVideo from "./PopularVideo";
 import { Link } from "react-router-dom";
+import PopularShimmer from "../shimmers/PopularShimmer";
 
 function PopularVideos() {
   const [popularVideos, setPopularVideos] = useState([]);
@@ -22,10 +23,10 @@ function PopularVideos() {
     }
   };
 
-  if (popularVideos.length === 0) return <h1>No Popular Videos Data</h1>;
+  if (popularVideos.length === 0) return <PopularShimmer />;
 
   return (
-    <div className="mt-5 flex flex-col p-5">
+    <div className="mt-1 flex flex-col p-5">
       {popularVideos.map((video) => (
         <Link to={"/watch?v=" + video.id}>
           <PopularVideo key={video.id} info={video} />

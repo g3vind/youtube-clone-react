@@ -40,12 +40,14 @@ function Sidebar() {
             </span>
             Shorts
           </li>
-          <li className={listItemStyles}>
-            <span className={iconStyles}>
-              <MdSubscriptions size={20} />
-            </span>
-            Subscriptions
-          </li>
+          <Link to="subscriptions">
+            <li className={listItemStyles}>
+              <span className={iconStyles}>
+                <MdSubscriptions size={20} />
+              </span>
+              Subscriptions
+            </li>
+          </Link>
         </ul>
       </div>
       {/* Second */}
