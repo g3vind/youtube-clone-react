@@ -7,6 +7,9 @@ export const SUBS_API = `https://youtube.googleapis.com/youtube/v3/subscriptions
 export const SEARCH_SUGGESTIONS_API =
   "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
+export const CHANNELS_API = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=UC_x5XG1OV2P6uZZ5FSM9Ttw&maxResults=50&regionCode=IN&key=
+`;
+
 export function formatRelativeTime(timestamp) {
   const currentDate = new Date();
   const publishDate = new Date(timestamp);

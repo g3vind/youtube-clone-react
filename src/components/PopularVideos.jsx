@@ -1,34 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { POPULAR_VIDEOS_API } from "../utils/constants";
-import PopularVideo from "./PopularVideo";
+import React from "react";
 import { Link } from "react-router-dom";
+import PopularVideo from "./PopularVideo";
 import PopularShimmer from "../shimmers/PopularShimmer";
+import usePopularVideos from "../hooks/usePopularVideos";
 
 function PopularVideos() {
-  const [popularVideos, setPopularVideos] = useState([]);
-  useEffect(() => {
-    getPopularVideos();
-  }, []);
+  const { popularVideos, loading } = usePopularVideos();
 
-  const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
-  const apiUrl = `${POPULAR_VIDEOS_API}${apiKey}`;
-
-  const getPopularVideos = async () => {
-    try {
-      const data = await fetch(apiUrl);
-      const json = await data.json();
-      setPopularVideos(json?.items);
-    } catch (error) {
-      console.log("Error Occured", error);
-    }
-  };
-
-  if (popularVideos.length === 0) return <PopularShimmer />;
+  if (loading) return <PopularShimmer />;
 
   return (
     <div className="mt-1 flex flex-col p-5">
       {popularVideos.map((video) => (
-        <Link to={"/watch?v=" + video.id}>
+        <Link key={video.id} to={"/watch?v=" + video.id}>
           <PopularVideo key={video.id} info={video} />
         </Link>
       ))}

@@ -1,12 +1,13 @@
 import React from "react";
 import { formatRelativeTime, formatViewCount } from "../utils/constants";
 import PopularShimmer from "../shimmers/PopularShimmer";
+import { CheckCircle2 } from "lucide-react";
 
 function PopularVideo({ info }) {
   const { snippet, statistics } = info;
 
   if (info.length === 0) return <PopularShimmer />;
-  const { channelTitle, thumbnails, title, publishedAt } = snippet;
+  const { channelTitle, thumbnails, title, publishedAt, description } = snippet;
 
   const { viewCount } = statistics;
   const time = formatRelativeTime(publishedAt);
@@ -17,10 +18,12 @@ function PopularVideo({ info }) {
       <img
         src={thumbnails?.medium?.url}
         alt="channelTitle"
-        className="h-36 w-72 object-cover rounded-lg"
+        className="h-36 w-80 object-cover rounded-lg"
       />
       <h2 className="font-medium mt-2">{title}</h2>
-      <p>{channelTitle}</p>
+      <p className="flex items-center gap-1">
+        {channelTitle} <CheckCircle2 size={15} />
+      </p>
       <div className="flex">
         <p>{views} views</p>&nbsp;•&nbsp;
         <p>{time}</p>
