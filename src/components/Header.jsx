@@ -1,17 +1,26 @@
 import { MdCreateNewFolder } from "react-icons/md";
 import { IoIosNotifications } from "react-icons/io";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../store/appSlice";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { SEARCH_SUGGESTIONS_API } from "../utils/constants";
 import { CiSearch } from "react-icons/ci";
+import { cachedResults } from "../store/searchSlice";
 
 function Header() {
   const [searchQuery, setSeachQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const searchCache = useSelector((store) => store.search);
+  const dispatch = useDispatch();
+
+  /*
+   *   -------- Cache Format----------
+       "iphone":["iphone","iphone11"............]
+   *
+   */
   useEffect(() => {
     /*
 
@@ -26,7 +35,14 @@ function Header() {
 
     // making api call every 200ms
     const timer = setTimeout(() => {
-      getSearchSuggestions();
+      // if it's present in cache dont make api call and set data from cache
+      if (searchCache[searchQuery]) {
+        setSuggestions(searchCache[searchQuery]);
+      }
+      // if not in cache make an api call
+      else {
+        getSearchSuggestions();
+      }
     }, 200);
     return () => {
       clearTimeout(timer);
@@ -37,9 +53,10 @@ function Header() {
     const data = await fetch(SEARCH_SUGGESTIONS_API + searchQuery);
     const json = await data.json();
     setSuggestions(json[1]);
-  };
 
-  const dispatch = useDispatch();
+    // updating the cache with newer value
+    dispatch(cachedResults({ [searchQuery]: json[1] }));
+  };
 
   const handleToggleMenu = () => {
     dispatch(toggleMenu());
