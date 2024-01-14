@@ -3,9 +3,44 @@ import { IoIosNotifications } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../store/appSlice";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { SEARCH_SUGGESTIONS_API } from "../utils/constants";
+import { CiSearch } from "react-icons/ci";
 
 function Header() {
+  const [searchQuery, setSeachQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  useEffect(() => {
+    /*
+
+     make an api call every time the `searchQuery` changes
+     make api call only if the difference between the keystrokes of user is greater than 200ms
+     ---------------------------------------------------------------------------------
+    make an api call after each key press
+    but if the diff bw the 2 api calls is <200ms
+    decline the api call
+    
+    */
+
+    // making api call every 200ms
+    const timer = setTimeout(() => {
+      getSearchSuggestions();
+    }, 200);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const getSearchSuggestions = async () => {
+    const data = await fetch(SEARCH_SUGGESTIONS_API + searchQuery);
+    const json = await data.json();
+    setSuggestions(json[1]);
+  };
+
   const dispatch = useDispatch();
+
   const handleToggleMenu = () => {
     dispatch(toggleMenu());
   };
@@ -28,27 +63,42 @@ function Header() {
         />
       </div>
 
-      {/* Second */}
-      <div className="flex-row flex p-3">
-        <input
-          style={{ width: "37vw" }}
-          className="flex h-10 w-full rounded-l-full border-2 border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-500  disabled:cursor-not-allowed  shadow-sm"
-          type="text"
-          placeholder="Search"
-        />
-        <button className="h-10 w-16 flex justify-center items-center bg-gray-100 rounded-r-full border-black/30 border-2">
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/54/54481.png"
-            className="h-6 w-6"
+      {/* Second - Search Bar*/}
+      <div className="flex-col flex p-3">
+        <div className="flex">
+          <input
+            value={searchQuery}
+            onChange={(e) => setSeachQuery(e.target.value)}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
+            style={{ width: "37vw" }}
+            className="flex h-10 w-full rounded-l-full border-2 border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-500  disabled:cursor-not-allowed  shadow-sm"
+            type="text"
+            placeholder="Search"
           />
-        </button>
-        <button className="h-10 w-12 flex justify-center ml-3 items-center border-2 bg-gray-100 border-gray-500 rounded-full">
-          <img
-            style={{ borderRadius: "50%" }}
-            className="h-5 w-5 opacity-80"
-            src="https://cdn-icons-png.flaticon.com/128/709/709682.png"
-          />
-        </button>
+          <button className="h-10 w-16 flex justify-center items-center bg-gray-100 rounded-r-full border-black/30 border-2">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/54/54481.png"
+              className="h-6 w-6"
+            />
+          </button>
+        </div>
+        {/* SEARCH SUGGESTIONS */}
+        {showSuggestions && (
+          <div className="fixed top-14 px-5 py-2 bg-white w-2/5 text-center shadow-lg rounded-lg border border-gray-100">
+            <ul>
+              {suggestions.map((query, index) => (
+                <li
+                  className="flex items-center justify-start gap-3 py-1 text-base font-semibold cursor-pointer hover:bg-slate-200"
+                  key={index}
+                >
+                  <CiSearch />
+                  {query}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       {/* Third */}
       <div className="flex flex-row gap-3 p-4">
