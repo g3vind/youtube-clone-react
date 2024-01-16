@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { RadioTower } from "lucide-react";
 import { FaUserCircle } from "react-icons/fa";
 import { formatRelativeTime } from "../utils/constants";
+import SearchShimmer from "../shimmers/SearchShimmer";
 
 function ResultsPage() {
   const [videos, setVideos] = useState([]);
@@ -29,7 +30,7 @@ function ResultsPage() {
   };
 
   if (videos?.length === 0) {
-    return <h1>Loading...</h1>;
+    return <SearchShimmer />;
   }
 
   return (
