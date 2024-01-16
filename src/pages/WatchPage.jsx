@@ -11,9 +11,13 @@ import CommentsContainer from "../components/CommentsContainer";
 import Description from "../components/Description";
 import usePopularVideos from "../hooks/usePopularVideos";
 import { formatViewCount } from "../utils/constants";
+import useChannels from "../hooks/useChannels";
 
 function WatchPage() {
   const { popularVideos } = usePopularVideos();
+  const { channelsData } = useChannels;
+
+  console.log(channelsData);
 
   let [searchParams] = useSearchParams();
   // console.log(searchParams.get("v")); // gives the video id
@@ -25,7 +29,7 @@ function WatchPage() {
   const specificId = searchParams.get("v");
   const index = popularVideos.findIndex((video) => video.id === specificId);
 
-  console.log(popularVideos[index]);
+  // console.log(popularVideos[index]);
 
   const videoInfo = popularVideos[index];
 
@@ -41,7 +45,11 @@ function WatchPage() {
         <iframe
           width="990"
           height="500"
-          src={"https://www.youtube.com/embed/" + searchParams.get("v")}
+          src={
+            "https://www.youtube.com/embed/" +
+            searchParams.get("v") +
+            "?autoPlay=1"
+          }
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
