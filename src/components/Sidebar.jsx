@@ -21,7 +21,7 @@ function Sidebar() {
 
   const listItemStyles = "flex items-center font-medium mb-2 cursor-pointer";
   const iconStyles = "mr-2";
-  return !isMenuOpen ? (
+  return isMenuOpen ? (
     <div className="flex flex-col gap-4 ml-4 mr-4 mt-6 w-36">
       {/* First */}
       <div className="border-b-2 border-gray-100 mb-2">

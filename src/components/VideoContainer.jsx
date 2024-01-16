@@ -46,13 +46,13 @@ function VideoContainer() {
     return <OfflinePage />;
   }
 
-  if (videos.length === 0) {
+  if (videos?.length === 0) {
     return <HomeShimmer />;
   }
 
   return (
     <div className="flex flex-wrap justify-around mt-6">
-      {videos.map((video) => (
+      {videos?.map((video) => (
         <Link key={video.id} to={"/watch?v=" + video.id}>
           <VideoCard key={video.id} info={video} />
         </Link>

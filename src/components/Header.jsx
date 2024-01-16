@@ -1,15 +1,18 @@
 import { MdCreateNewFolder } from "react-icons/md";
 import { IoIosNotifications } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
+
 import { toggleMenu } from "../store/appSlice";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { SEARCH_SUGGESTIONS_API } from "../utils/constants";
 import { CiSearch } from "react-icons/ci";
 import { cachedResults } from "../store/searchSlice";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
   const [searchQuery, setSeachQuery] = useState("");
+  const [searchVideos, setSearchVideos] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -61,6 +64,18 @@ function Header() {
   const handleToggleMenu = () => {
     dispatch(toggleMenu());
   };
+
+  const handleSearch = async () => {
+    try {
+      const apiUrl = `https://www.googleapis.com/youtube/v3/search?maxResults=25&q=${searchQuery}&key=AIzaSyAV07Ed9fx3DqgtX8DLcxFZqIBnzAziEXA`;
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      setSearchVideos(data.items);
+      navigate(`/results/${searchQuery}`);
+    } catch (err) {
+      console.log("Error Occured in Search", err);
+    }
+  };
   return (
     <div className="flex flex-row justify-between shadow-md">
       {/* First */}
@@ -93,7 +108,11 @@ function Header() {
             type="text"
             placeholder="Search"
           />
-          <button className="h-10 w-16 flex justify-center items-center bg-gray-100 rounded-r-full border-black/30 border-2">
+
+          <button
+            onClick={handleSearch}
+            className="h-10 w-16 flex justify-center items-center bg-gray-100 rounded-r-full border-black/30 border-2"
+          >
             <img
               src="https://cdn-icons-png.flaticon.com/128/54/54481.png"
               className="h-6 w-6"

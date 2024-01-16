@@ -7,7 +7,7 @@ function CollapsedSidebar() {
     "flex items-center flex-col font-medium mb-2 cursor-pointer";
 
   return (
-    <div className="flex flex-col w-20 m-4">
+    <div className="flex flex-col m-2">
       {/* First */}
       <div className="flex gap-16 mb-2">
         <ul className="flex flex-col mt-8 gap-12">

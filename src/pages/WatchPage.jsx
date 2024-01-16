@@ -17,8 +17,6 @@ function WatchPage() {
   const { popularVideos } = usePopularVideos();
   const { channelsData } = useChannels;
 
-  console.log(channelsData);
-
   let [searchParams] = useSearchParams();
   // console.log(searchParams.get("v")); // gives the video id
   const dispatch = useDispatch();

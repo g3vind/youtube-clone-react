@@ -1,8 +1,10 @@
 import useComments from "../hooks/useComments";
 import Comment from "./Comment";
 import { commentsData } from "../utils/commentsData";
+import { useState } from "react";
 
 const CommentsContainer = ({ count }) => {
+  const [showCommentsButton, setShowCommentsButton] = useState(false);
   const { comments, setComments } = useComments();
   // console.log(comments);
   return (
@@ -18,10 +20,14 @@ const CommentsContainer = ({ count }) => {
           placeholder="Add a comment..."
           type="text"
           className="border-b-2 w-2/3 border-gray-100 outline-none"
+          onFocus={() => setShowCommentsButton(true)}
+          onBlur={() => setShowCommentsButton(false)}
         />
-        <button className="h-9 w-24 bg-blue-500 text-black  rounded-full">
-          Comment
-        </button>
+        {showCommentsButton && (
+          <button className="h-9 w-24 mt-6   bg-blue-500 text-black  rounded-full">
+            Comment
+          </button>
+        )}
       </div>
       {/* <Comment data={commentsData[0]} /> */}
       <CommentsList comments={commentsData} />
