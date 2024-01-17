@@ -8,6 +8,7 @@ import Body from "./components/Body";
 import WatchPage from "./pages/WatchPage";
 import SubsPage from "./pages/SubsPage";
 import ResultsPage from "./pages/ResultsPage";
+import SearchWatchPage from "./pages/SearchWatchPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<HomePage />}>
             <Route index element={<Body />} />
             <Route path="results/:searchQuery" element={<ResultsPage />} />
+            <Route path="search/:searchQuery" element={<SearchWatchPage />} />
             <Route path="watch" element={<WatchPage />} />
             <Route path="subscriptions" element={<SubsPage />} />
           </Route>

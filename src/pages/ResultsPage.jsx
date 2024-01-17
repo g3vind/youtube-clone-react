@@ -14,9 +14,11 @@ function ResultsPage() {
     getData();
   }, [searchQuery]);
 
+  const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+  const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${searchQuery}&key=${apiKey}`;
+
   const getData = async () => {
     try {
-      const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${searchQuery}&key=AIzaSyAnvO_e-nlQC1z9Of_0uOJMt6jukp0M-Vo`;
       const response = await fetch(apiUrl);
       const json = await response.json();
 
