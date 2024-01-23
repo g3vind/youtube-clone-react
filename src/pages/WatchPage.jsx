@@ -12,6 +12,7 @@ import Description from "../components/Description";
 import usePopularVideos from "../hooks/usePopularVideos";
 import { formatViewCount } from "../utils/constants";
 import useChannels from "../hooks/useChannels";
+import LiveChat from "../components/LiveChat";
 
 function WatchPage() {
   const { popularVideos } = usePopularVideos();
@@ -100,6 +101,9 @@ function WatchPage() {
         <CommentsContainer count={commentCount} />
       </div>
       <div>
+        {/* -------------------------LIVE CHAT------------------------- */}
+        <LiveChat />
+        {/* -------------------------------POPULAR VIDEOS-------------------- */}
         <PopularVideos />
       </div>
     </div>

@@ -7,6 +7,8 @@ export const SUBS_API = `https://youtube.googleapis.com/youtube/v3/subscriptions
 export const SEARCH_API = `GET https://youtube.googleapis.com/youtube/v3/search?maxResults=25&q=surfing&key=
 `;
 
+export const OFFSET_LIVE_CHAT = 13;
+
 export const SEARCH_SUGGESTIONS_API =
   "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 

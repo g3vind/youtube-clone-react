@@ -8,7 +8,7 @@ const getSubsVideos = async () => {
   try {
     const data = await fetch(apiUrl);
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
   } catch (error) {
     console.log("error in subs page", error);
   }
