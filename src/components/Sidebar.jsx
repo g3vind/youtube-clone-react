@@ -34,6 +34,14 @@ function Sidebar() {
               Home
             </li>
           </Link>
+          <Link to="/trending">
+            <li className={listItemStyles}>
+              <span className={iconStyles}>
+                <IoMdTrendingUp />
+              </span>
+              Trending
+            </li>
+          </Link>
           <li className={listItemStyles}>
             <span className={iconStyles}>
               <SiYoutubeshorts size={20} />

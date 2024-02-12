@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
@@ -9,6 +8,7 @@ import WatchPage from "./pages/WatchPage";
 import SubsPage from "./pages/SubsPage";
 import ResultsPage from "./pages/ResultsPage";
 import SearchWatchPage from "./pages/SearchWatchPage";
+import TrendingPage from "./pages/TrendingPage";
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
             <Route path="search/:searchQuery" element={<SearchWatchPage />} />
             <Route path="watch" element={<WatchPage />} />
             <Route path="subscriptions" element={<SubsPage />} />
+            <Route path="trending" element={<TrendingPage />} />
           </Route>
         </Routes>
       </Router>

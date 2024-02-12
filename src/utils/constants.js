@@ -18,6 +18,9 @@ export const CHANNELS_API = `https://youtube.googleapis.com/youtube/v3/channels?
 export const COMMENTS_API = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&textFormat=html&videoId=_VB39Jo8mAQ&key=
 `;
 
+export const TRENDING_PAGE_API =
+  "https://youtube-trending.p.rapidapi.com/trending?country=US&type=gaming";
+
 export function formatRelativeTime(timestamp) {
   const currentDate = new Date();
   const publishDate = new Date(timestamp);
