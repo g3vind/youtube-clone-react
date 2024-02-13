@@ -1,4 +1,4 @@
-# YouTube Clone
+# YouTube Clone React
 
 This project leverages YouTube's Live API to introduce advanced functionality, optimizing user experience and resource consumption.
 
